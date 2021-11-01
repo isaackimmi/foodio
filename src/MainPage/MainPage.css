@@ -1,0 +1,27 @@
+.RowStyle{
+    align-items: center;
+    justify-content:center;
+    
+
+}
+
+.CardStyle{
+    margin-bottom: 25px;
+    width: 320px;
+    height: 380px;
+    
+}
+
+.imageStyle{
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+    /**
+    
+    height: auto;
+    max-height: 250px;
+    width: auto;
+    max-width: 250px;
+    object-fit: cover;
+    */
+}
