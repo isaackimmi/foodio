@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import LandingPage from "./LandingPage/LandingPage";
 import MainPage from "./MainPage/MainPage";
@@ -6,7 +5,6 @@ import UserAccountPage from "./UserAccountPage/UserAccPage";
 import Header from "./components/Header";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useState } from "react";
 
 function App() {
   return (
