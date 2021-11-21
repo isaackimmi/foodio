@@ -11,6 +11,8 @@ const Header = () => {
           <Nav.Link href="/main-page">Main Page</Nav.Link>
           <Nav.Link href="/about">About</Nav.Link>
           <Nav.Link href="/how-to">How To Use Foodio</Nav.Link>
+          <Nav.Link href="/user-acc-page">User Page</Nav.Link>
+          <Nav.Link href="/login-page"> Login page</Nav.Link>
         </Nav>
       </Container>
     </Navbar>

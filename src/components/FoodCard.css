@@ -1,18 +1,42 @@
-.CardStyle {
-  margin-bottom: 25px;
-  width: 320px;
-  height: 380px;
+.CardStyle{
+  margin: 10px;
+ width: 400px;
+ height: 450px;
+ border-radius:40px;
+ overflow: hidden
 }
-.imageStyle {
-  width: 100%;
-  height: 15vw;
-  object-fit: cover;
-  /**
-    
-    height: auto;
-    max-height: 250px;
-    width: auto;
-    max-width: 250px;
-    object-fit: cover;
+.textStyle{
+  float: right;
+  font-family:Futura;
+  font-size: x-large;
+}
+
+.starStyle{
+  width :30%;
+  height:30%;
+
+}
+
+.foodTagStyle{
+float:right;
+font-size: 10px; 
+padding: 5px;
+}
+
+    /**
+    Cardstyle in mainpage.css
+      margin-bottom: 25px;
+  width: 400px;
+  height: 450px;
+  
     */
-}
+    
+.imageStyle{
+  width: 100%;
+  height: 70%;
+  object-fit: cover; 
+  }
+
+  
+
+   
