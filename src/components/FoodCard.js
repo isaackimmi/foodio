@@ -7,16 +7,28 @@ import './FoodCard.css'
 function FoodCard(props){
   return(
     <>
-              <Card className ="CardStyle"  >
-                         <Card.Img variant="top" className= "imageStyle" src ={props.image} />
+
+              <Card className ="CardStyle" >
+           
+                        <Card.Img src ={props.image} className="imageStyle"/>
+                    
+                    
+
                            <Card.Body>
                              <Card.Title>{props.title}</Card.Title>
+                            <Button className="foodTagStyle">
+                              {props.tag}
+                              </Button>
                             <Card.Text>
-                                Eat eat eat eat eat eat eat eat eat
+                                Some description 
                              </Card.Text>
-                             <Card.Footer>
-                                 Star Rating
-                             </Card.Footer>
+                             <div >
+                             <Card.Img className="starStyle" variant = "bottom" src="https://static.vecteezy.com/system/resources/thumbnails/002/450/568/small/five-stars-rating-icon-vector.jpg"/>
+                              <span className="textStyle">
+                                {props.distance}
+                              </span>
+                               </div>
+                   
                         </Card.Body>
                            </Card>
   

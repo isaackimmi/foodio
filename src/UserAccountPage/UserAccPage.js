@@ -7,18 +7,16 @@ function UserAccPage() {
   return (
     <>
       <Header />
-
       <Container>
         <Row className="auto">
           <Col xl="auto">
-            <Card style={{ width: "50%", height: "30%" }}>
+            <Card className = "m-5 border-0 shadow" style={{ width: "50%", height: "30%" }}>
               <Card.Img
                 variant="top"
                 src="https://en.meming.world/images/en/thumb/e/e2/Crying_Cat_screaming.jpg/300px-Crying_Cat_screaming.jpg"
               />
-
               <Card.Body>
-                <Card.Title>Card Title</Card.Title>
+                <Card.Title>Name</Card.Title>
                 <Card.Text>
                   Some quick example text to build on the card title and make up
                   the bulk of the card's content.
