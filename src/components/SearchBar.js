@@ -76,7 +76,7 @@ const SearchBar = ({ setRestaurants }) => {
 
   useEffect(() => {
     loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=AIzaSyB1q8elwYtcDQ8JUHMweywLu471QOoccy0&libraries=places`,
+      `https://maps.googleapis.com/maps/api/js?key=AIzaSyB1q8elwYtcDQ8JUHMweywLu471QOoccy0&libraries=places,geometry`,
       () => handleScriptLoad(setQuery, autoCompleteRef)
     );
   }, []);
@@ -107,6 +107,7 @@ const SearchBar = ({ setRestaurants }) => {
 
   const handleClick = () => {
     let userLocation = new window.google.maps.LatLng(lat, long);
+    setUserLocation(userLocation);
 
     var request = {
       location: userLocation,
@@ -127,11 +128,27 @@ const SearchBar = ({ setRestaurants }) => {
         //console.log(restaurantResults[i]);
       }
 
-      // var distanceBetween =
-      //   google.maps.geometry.spherical.computeDistanceBetween(
-      //     userLocation,
-      //     cafeLocation
-      //   );
+      restaurantResults.forEach((element) => {
+        var restaurantLong = element.geometry.location.lng();
+        var restaurantLat = element.geometry.location.lat();
+
+        var restaurantLocation = new window.google.maps.LatLng(
+          restaurantLat,
+          restaurantLong
+        );
+
+        var distanceBetween =
+          window.google.maps.geometry.spherical.computeDistanceBetween(
+            userLocation,
+            restaurantLocation
+          );
+
+        const roundedDistance = (Math.round(distanceBetween) / 1000).toFixed(2);
+
+        const distanceObj = { distance: roundedDistance };
+
+        element = Object.assign(element, distanceObj);
+      });
     }
 
     //console.log(restaurantResults);

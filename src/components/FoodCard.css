@@ -1,42 +1,42 @@
-.CardStyle{
+.CardStyle {
   margin: 10px;
- width: 400px;
- height: 450px;
- border-radius:40px;
- overflow: hidden
+  width: 400px;
+  height: 450px;
+  border-radius: 40px;
+  overflow: hidden;
 }
-.textStyle{
+.textStyle {
   float: right;
-  font-family:Futura;
+  font-family: Futura;
   font-size: x-large;
 }
 
-.starStyle{
-  width :30%;
-  height:30%;
-
+.starStyle {
+  width: 30%;
+  height: 30%;
 }
 
-.foodTagStyle{
-float:right;
-font-size: 10px; 
-padding: 5px;
+.foodTagStyle {
+  float: right;
+  font-size: 10px;
+  padding: 5px;
 }
 
-    /**
+/**
     Cardstyle in mainpage.css
       margin-bottom: 25px;
   width: 400px;
   height: 450px;
   
     */
-    
-.imageStyle{
+
+.imageStyle {
   width: 100%;
   height: 70%;
-  object-fit: cover; 
-  }
+  object-fit: cover;
+}
 
-  
-
-   
+.addressStyle {
+  color: black;
+  text-decoration: none;
+}

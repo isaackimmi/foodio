@@ -24,6 +24,9 @@ const LandingPage = ({ restaurantArr, setRestaurantArr }) => {
       }
 
       setRestaurants([...tempRestaurantArr]);
+
+      // Pass state up to App.js
+      setRestaurantArr([...tempRestaurantArr]);
     });
   };
 
