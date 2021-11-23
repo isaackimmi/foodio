@@ -19,9 +19,9 @@ function FoodCard(props) {
         <Card.Img src={props.image} className="imageStyle" />
 
         <Card.Body>
-          <Card.Title>{props.title}</Card.Title>
+          <Card.Title className = "titleStyle">{props.title}</Card.Title>
           {/* <Button className="foodTagStyle">{props.tag}</Button> */}
-          <Card.Text>
+          <Card.Text className="paragraphStyle">
             <i className="bi bi-geo-alt-fill"></i>
             <a
               href={props.restaurantID}
