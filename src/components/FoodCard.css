@@ -11,9 +11,8 @@
   font-size: x-large;
 }
 
-.starStyle {
-  width: 30%;
-  height: 30%;
+.starRating {
+  margin-right: 5px;
 }
 
 .foodTagStyle {

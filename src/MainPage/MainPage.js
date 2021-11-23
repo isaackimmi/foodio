@@ -12,73 +12,17 @@ import { Row, Col } from "react-bootstrap";
 import "./MainPage.css";
 import "../components/FoodCard.css";
 
+let foodCardArr = [];
+
 function MainPage({ restaurantArr, setRestaurantArr }) {
   const [restaurants, setRestaurants] = useState([]);
+  const [foodcardArray, setFoodCardArray] = useState([]);
 
   useEffect(() => {
     setRestaurants([...restaurantArr]);
   }, [restaurantArr]);
 
-  const cardInfo = [
-    {
-      image:
-        "https://cdnimg.webstaurantstore.com/uploads/blog/2018/12/lighting.jpg",
-      title: "Food1",
-      distance: "1 mi",
-      tag: "Cafe",
-    },
-    {
-      image:
-        "https://www.chasinglenscapes.com/wp-content/uploads/2020/06/food-photography-on-the-go-tips.jpg",
-      title: "Food1",
-      distance: "5 mi",
-      tag: "Cafe",
-    },
-    {
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfxy04JHldNIE9ouIuy0nroUtyTWDahXHhJw&usqp=CAU",
-      title: "Food1",
-      distance: "5 mi",
-      tag: "Cafe",
-    },
-    {
-      image:
-        "https://cdn.shopify.com/s/files/1/0024/2810/8869/articles/Replica_Surfaces_backdrops_food_jewelry_photo_photography_-_1_1990c178-2571-48f9-84c2-d5ebaa995789_2048x.jpg?v=1574032657",
-      title: "Food1",
-      distance: "5 mi",
-      tag: "Cafe",
-    },
-    {
-      image:
-        "https://cdnimg.webstaurantstore.com/uploads/blog/2018/12/lighting.jpg",
-      title: "Food1",
-      distance: "5 mi",
-      tag: "Cafe",
-    },
-    {
-      image:
-        "https://cdnimg.webstaurantstore.com/uploads/blog/2018/12/lighting.jpg",
-      title: "Food1",
-      distance: "5 mi",
-      tag: "Cafe",
-    },
-    {
-      image:
-        "https://cdnimg.webstaurantstore.com/uploads/blog/2018/12/lighting.jpg",
-      title: "Food1",
-      distance: "5 mi",
-      tag: "Cafe",
-    },
-    {
-      image:
-        "https://cdnimg.webstaurantstore.com/uploads/blog/2018/12/lighting.jpg",
-      title: "Food1",
-      distance: "5 mi",
-      tag: "Cafe",
-    },
-  ];
-
-  const foodCardArr = restaurants.map((restaurantInfo) => {
+  foodCardArr = restaurants.map((restaurantInfo) => {
     const restaurantID = "http://maps.google.com/?q=" + restaurantInfo.name;
     return (
       <FoodCard
@@ -94,10 +38,30 @@ function MainPage({ restaurantArr, setRestaurantArr }) {
     );
   });
 
+  const handleSetRestaurants = (restaurantList) => {
+    const tempRestaurantArr = restaurants;
+
+    restaurantList.forEach((element) => {
+      // Prevents duplicate search results from being added.
+      if (
+        restaurants.find((elem) => elem.name === element.name) === undefined
+      ) {
+        tempRestaurantArr.push(element);
+      }
+
+      setRestaurants([...tempRestaurantArr]);
+
+      //console.log(tempRestaurantArr);
+      // Pass state up to App.js
+      setRestaurantArr([...tempRestaurantArr]);
+    });
+  };
+
   return (
     <>
       <Header></Header>
-      <Container>
+      <Container className="main-page-container">
+        <SearchBar setRestaurants={handleSetRestaurants} />
         <Row className="RowStyle" xs={1} md={6} lg={4}>
           {foodCardArr}
         </Row>
@@ -105,6 +69,5 @@ function MainPage({ restaurantArr, setRestaurantArr }) {
     </>
   );
 }
-//{cardInfo.map((cardInfo) => (<FoodCard title = {cardInfo.title} image = {cardInfo.image}/>))}
 
 export default MainPage;

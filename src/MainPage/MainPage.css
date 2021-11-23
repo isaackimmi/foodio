@@ -4,6 +4,10 @@
   column-gap: 30px;
 }
 
+.main-page-container {
+  padding-top: 12px;
+}
+
 /**
 
 .CardStyle{
@@ -21,9 +25,7 @@ height: 450px;
 }
 */
 
-
-
-  /**
+/**
   
 
       max-height: 250px;

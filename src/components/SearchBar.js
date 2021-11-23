@@ -22,47 +22,6 @@ let autoComplete;
 
 let nearbyRestaurants;
 
-const handlePlaceSelect = async (updateQuery) => {
-  const addressObject = autoComplete.getPlace();
-  const query = addressObject.formatted_address;
-  updateQuery(query);
-  console.log(addressObject);
-};
-
-const loadScript = (url, callback) => {
-  let script = document.createElement("script");
-  script.type = "text/javascript";
-
-  if (script.readyState) {
-    script.onreadystatechange = () => {
-      if (script.readyState === "loaded" || script.readyState === "complete") {
-        script.onreadystatechange = null;
-        callback();
-      }
-    };
-  } else {
-    script.onload = () => callback();
-  }
-
-  script.src = url;
-  document.getElementsByTagName("head")[0].appendChild(script);
-};
-
-const handleScriptLoad = (updateQuery, autoCompleteRef) => {
-  autoComplete = new window.google.maps.places.Autocomplete(
-    autoCompleteRef.current,
-    {
-      types: ["address"],
-      componentRestrictions: { country: "us" },
-      fields: ["address_components", "geometry"],
-    }
-  );
-  autoComplete.setFields(["address_components", "formatted_address"]);
-  autoComplete.addListener("place_changed", () =>
-    handlePlaceSelect(updateQuery)
-  );
-};
-
 const SearchBar = ({ setRestaurants }) => {
   const [query, setQuery] = useState("");
   const autoCompleteRef = useRef(null);
@@ -71,6 +30,52 @@ const SearchBar = ({ setRestaurants }) => {
   const [long, setLong] = useState("");
   const [status, setStatus] = useState("Address");
   const [userLocation, setUserLocation] = useState("");
+
+  const handlePlaceSelect = async (updateQuery) => {
+    const addressObject = autoComplete.getPlace();
+    const query = addressObject.formatted_address;
+    updateQuery(query);
+    console.log(addressObject);
+    setLat(addressObject.geometry.location.lat());
+    setLong(addressObject.geometry.location.lng());
+  };
+
+  const loadScript = (url, callback) => {
+    let script = document.createElement("script");
+    script.type = "text/javascript";
+
+    if (script.readyState) {
+      script.onreadystatechange = () => {
+        if (
+          script.readyState === "loaded" ||
+          script.readyState === "complete"
+        ) {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else {
+      script.onload = () => callback();
+    }
+
+    script.src = url;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  };
+
+  const handleScriptLoad = (updateQuery, autoCompleteRef) => {
+    autoComplete = new window.google.maps.places.Autocomplete(
+      autoCompleteRef.current,
+      {
+        types: ["address"],
+        componentRestrictions: { country: "us" },
+        fields: ["address_components", "geometry"],
+      }
+    );
+    autoComplete.setFields(["address_components", "formatted_address"]);
+    autoComplete.addListener("place_changed", () =>
+      handlePlaceSelect(updateQuery)
+    );
+  };
 
   let restaurantResults = [];
 
@@ -95,7 +100,11 @@ const SearchBar = ({ setRestaurants }) => {
             JSON.stringify(response.data.results[0].formatted_address)
           );
 
-          setQuery(JSON.stringify(response.data.results[0].formatted_address));
+          if (response !== null) {
+            setQuery(
+              JSON.stringify(response.data.results[0].formatted_address)
+            );
+          }
         })
         .catch(function (error) {
           console.log(error);
@@ -151,13 +160,14 @@ const SearchBar = ({ setRestaurants }) => {
       });
     }
 
-    //console.log(restaurantResults);
+    console.log(restaurantResults);
     setRestaurants(restaurantResults);
     history.push("/main-page");
   }
 
   const handleChange = (event) => {
     setQuery(event.target.value);
+    console.log(autoCompleteRef.current.value);
   };
 
   const handleUserLocation = () => {

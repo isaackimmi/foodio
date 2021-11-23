@@ -5,14 +5,6 @@ import { Button } from "react-bootstrap";
 import { Row, Col } from "react-bootstrap";
 import "./FoodCard.css";
 function FoodCard(props) {
-  const starRating = (rating) => {
-    let starArray = [];
-    for (let index = 0; index < rating; index++) {
-      starArray.push(<i class="bi bi-star-fill"></i>);
-    }
-    return starArray;
-  };
-
   return (
     <>
       <Card className="CardStyle">
@@ -33,12 +25,8 @@ function FoodCard(props) {
             </a>
           </Card.Text>
           <div>
-            {/* <Card.Img
-              className="starStyle"
-              variant="bottom"
-              src="https://static.vecteezy.com/system/resources/thumbnails/002/450/568/small/five-stars-rating-icon-vector.jpg"
-            /> */}
-            {starRating(props.rating)}
+            <i className="bi bi-star-fill starRating"></i>
+            {props.rating}
             <span className="textStyle">{props.distance} miles</span>
           </div>
         </Card.Body>
